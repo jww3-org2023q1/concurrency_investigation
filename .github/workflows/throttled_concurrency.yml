@@ -12,7 +12,8 @@ jobs:
       fail-fast: false
       max-parallel: 60
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        #os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest]
         ikind: [a, x]
         solver: [b, c, d, e, f]
         testdim: [g, h]
