@@ -1,25 +1,32 @@
 name: Concurrency Test Exclude MacOS
 
-# Controls when the workflow will run
 on:
   workflow_dispatch:
 
 jobs:
   primary:
-    name: Fan out across a matrix
+    name: Variation
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       max-parallel: 60
       matrix:
-        os: [windows-latest, ubuntu-latest, ubuntu-20.04]
+        os: [Windows-latest, ubuntu-latest, ubuntu-20.04]
         dimA: [a, b, c, d, e, f]
-        dimB: [w, x, y, z]
+        dimB: [v, w, x, y, z]
 
     steps:
-      - name: Conduct the test
+      - name: Preamble
+        shell: pwsh
+        run: echo "Started"
+
+      - name: Linux Sleep
+        if: runner.os == 'Linux'
         shell: pwsh
         run: |
           echo "Sleeping for 30 seconds"
           Start-Sleep -Seconds 30
-          echo "done"
+
+      - name: Signoff
+        shell: pwsh
+        run: echo "done"
