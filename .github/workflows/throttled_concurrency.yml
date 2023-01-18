@@ -1,0 +1,26 @@
+name: Throttled Concurrency Test
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+jobs:
+  primary:
+    name: Fan out across a matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 60
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        ikind: [a]
+        solver: [b, c, d, e, f]
+        testdim: [g, h]
+
+    steps:
+      - name: Conduct the test
+        shell: bash
+        run: |
+          echo "Sleeping for 30 seconds"
+          sleep 30s
+          echo "done"
