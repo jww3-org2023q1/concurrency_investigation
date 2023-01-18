@@ -13,9 +13,8 @@ jobs:
       max-parallel: 60
       matrix:
         os: [windows-latest, ubuntu-latest, ubuntu-20.04]
-        ikind: [a, x]
-        solver: [b, c, d, e, f]
-        testdim: [g, h]
+        dimA: [a, b, c, d, e, f]
+        dimB: [w, x, y, z]
 
     steps:
       - name: Conduct the test
