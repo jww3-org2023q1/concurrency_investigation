@@ -1,4 +1,4 @@
-name: Concurrency Test With MacOS
+name: Concurrency Test Excluding MacOS
 
 on:
   workflow_dispatch:
