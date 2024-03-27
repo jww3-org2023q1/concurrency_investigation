@@ -1,0 +1,17 @@
+name: Simple Callable Workflow
+on:
+  workflow_call:
+    outputs:
+      workflow_output:
+        description: Simple, constant output
+        value: ${{ jobs.outputter.outputs.job_output }}
+  workflow_dispatch:
+
+jobs:
+  outputter:
+    runs-on: ubuntu-latest
+    outputs:
+      job_output: ${{ steps.lone_step.outputs.step_output }}
+    steps:
+      - id: lone_step
+        run: echo "step_output=good" >> "$GITHUB_OUTPUT"
